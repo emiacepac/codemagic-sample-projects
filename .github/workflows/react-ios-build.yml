@@ -1,6 +1,7 @@
 name: React Native iOS
 
 on: 
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -47,4 +48,8 @@ jobs:
           cp -R $HOME/Library/Developer/Xcode/DerivedData/*/Build/**/*.app $HOME/Library/Developer/Xcode/DerivedData/*/Build/
           cp -R $HOME/Library/Developer/Xcode/DerivedData/*/Build/**/*.dSYM $HOME/Library/Developer/Xcode/DerivedData/*/Build/
 
-      - name: Upl
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ios-artifacts
+          path: $HOME/Library/Developer/Xcode/DerivedData/*/Build/
